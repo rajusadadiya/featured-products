@@ -1,0 +1,31 @@
+<?php 
+/**
+ * Raju Sadadiya
+ *
+ * NOTICE OF LICENSE
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    RS
+ * @package     RS_FeaturedProducts
+ */
+?>
+<label>
+	<strong><?php echo __("For static block & page");?></strong>
+</label>
+<br>
+<code>
+	{{block class="RS\FeaturedProducts\Block\FeaturedBlock" template="RS_FeaturedProducts::product/featured.phtml"}}
+</code>
+<br>
+<br>
+<label>
+	<strong><?php echo __("For xml layout");?></strong>
+</label>
+<br>
+<code>
+	<?php echo "&lt;block class=\"RS\\FeaturedProducts\\Block\\FeaturedBlock\" name=\"featured.block\" as=\"featured_block\" template=\"RS_FeaturedProducts::product/featured.phtml\" ifconfig=\"featuredproduct/block/active\" /&gt;"; ?>
+</code>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--/**
+ * Raju Sadadiya
+ *
+ * NOTICE OF LICENSE
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    RS
+ * @package     RS_FeaturedProducts
+ */ 
+-->
+<page  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>      
+        <referenceContainer name="page.bottom.container">
+          	<block class="RS\FeaturedProducts\Block\FeaturedProduct" name="featured.product" as="featured_product" template="RS_FeaturedProducts::product/featured.phtml" ifconfig="featuredproduct/product_page/active">
+          	</block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--/**
+ * Raju Sadadiya
+ *
+ * NOTICE OF LICENSE
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    RS
+ * @package     RS_FeaturedProducts
+ */ 
+-->
+<page  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+        <css src="Magento_Swatches::css/swatches.css"/>
+    </head>
+    <body>      
+    	<referenceBlock name="cms.index.swatchrenderer">
+            <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml" />
+        </referenceBlock> 
+        <referenceContainer name="content">
+          	<block class="RS\FeaturedProducts\Block\FeaturedProduct" name="featured.home" as="featured_home" template="RS_FeaturedProducts::product/featured.phtml" ifconfig="featuredproduct/homepage/active" after="-">
+                <block class="Magento\Framework\View\Element\RendererList" name="cms.index.swatchrenderer" as="cms.index.toprenderers">
+                    <block class="Magento\Framework\View\Element\Template" as="default"/>
+                </block>
+          	</block>
+          	<!-- <block class="Test\Homeslider\Block\Productslist" name="productlist" template="Test_Homeslider::products.phtml">
+            </block> -->
+        </referenceContainer>
+    </body>
+</page>
