@@ -24,7 +24,7 @@ use Magento\Framework\App\Action\Action;
 		$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
 	?>
 	<?php $pos = $block->getPositioned(); ?>
-	<div class="rs-product-block">		
+	<div class="rs-product-block block widget">		
 		<div class="heading rs-featured-heading"><h2><?php echo $this->getTitle(); ?></h2></div>
 		<?php if($_productCollection->count() > 0): ?>
 			<div class="products-grid">
@@ -154,7 +154,7 @@ use Magento\Framework\App\Action\Action;
 			}
 			</script>
 		<?php endif; ?>
-			<script>
+			<script type="text/javascript">
 				<?php if($this->isSliderEnable() && $_productCollection->count() > $this->getDefaultSliderItem()): ?>
 				require([
 					'jquery',
@@ -245,7 +245,35 @@ use Magento\Framework\App\Action\Action;
 		padding: 9px !important;
 		border:1px solid transparent !important;
 	}
-	.rs-product-block .product-item-info:hover
+
+	.owl-item .item.product-item{
+		width: 95% !important; 
+	}
+	.owl-item .item.product-item .product-item-info 
+	{
+		border:1px solid transparent !important;
+	}
+	.owl-item .item.product-item .product-item-info .product-item-inner{
+		position: relative !important;
+		margin: 0px !important;
+		padding: 0px !important;
+		box-shadow: none !important;
+		border:none !important;
+		height: 55px;
+	}
+
+	.products-grid .owl-item .product-item-actions{
+		margin: 0px;
+		display: none !important;
+	}
+	.owl-item .item.product-item .product-item-info:hover .product-item-actions{
+		display: block !important;
+	} 
+	.owl-item .item.product-item .product-item-info:hover{
+		border:1px solid #bbb !important;
+		margin: auto !important;
+	}
+	/*.rs-product-block .product-item-info:hover
 	{
 		margin:0px;
 		border:1px solid #bbb !important;
@@ -270,6 +298,6 @@ use Magento\Framework\App\Action\Action;
 	}
 	.rs-product-block .product-item-actions{
 		display: block !important;	
-	}
+	}*/
 <?php endif;?>
 </style>

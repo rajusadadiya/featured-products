@@ -36,9 +36,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
 	const TITLE = "title";
 
+    const DEFAULT_SORT = "sort_by";
+
+    const DEFAULT_SORT_ORDER = "sort_order";
+
 	const LIMIT = "item_limit";
 
-	const PRICE = "enable_price";
+    const PRICE = "enable_price";
 
 	const REVIEW = "enable_review";
 
@@ -90,10 +94,20 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
     	return $this->getConfig(self::SECTION."/".$page."/".self::LIMIT) !=  "" ? $this->getConfig(self::SECTION."/".$page."/".self::LIMIT) : $this->getConfig(self::SECTION."/".self::GENERAL."/".self::LIMIT);
     }
-    
+
+    public function getDefaultSort($page)
+    {
+        return $this->getConfig(self::SECTION."/".$page."/".self::DEFAULT_SORT);
+    }
+
+    public function getDefaultSortOrder($page)
+    {
+        return $this->getConfig(self::SECTION."/".$page."/".self::DEFAULT_SORT_ORDER);
+    }
+
     public function isShowPrice($page)
     {
-    	return $this->getConfig(self::SECTION."/".$page."/".self::PRICE);
+        return $this->getConfig(self::SECTION."/".$page."/".self::PRICE);
     }
 
     public function isShowReview($page)

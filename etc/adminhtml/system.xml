@@ -21,21 +21,21 @@
             <tab>rsextensions</tab>
 			<resource>Magento_Catalog::config_rsfeatureproduct</resource>
             <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Featured Product Configuration</label>
+                <label>General Configuration</label>
                 <field id="active" translate="label comment" type="select" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
 				<field id="title" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Title</label>
-                    <comment>Default Title</comment>
+                    <comment>Default featured product title</comment>
                     <depends>
                         <field id="active">1</field>
                     </depends>
                 </field>
                 <field id="item_limit" translate="label comment" type="text" sortOrder="2" showInDefault="7" showInWebsite="1" showInStore="1">
-                    <label>Collection Size</label>
-                    <comment>Default Collection size</comment>
+                    <label>Featured Collection Size</label>
+                    <comment>Add featured items collection size</comment>
                     <depends>
                         <field id="active">1</field>
                     </depends>
@@ -58,7 +58,26 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_price" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                
+                <field id="sort_by" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Sort By</label>
+                    <source_model>RS\FeaturedProducts\Model\Config\Source\SortOption</source_model>
+                    <depends>
+                        <field id="question_answer/general/active">1</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+
+                <field id="sort_order" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Sort Order</label>
+                    <source_model>RS\FeaturedProducts\Model\Config\Source\SortOrderOption</source_model>
+                    <depends>
+                        <field id="question_answer/general/active">1</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+
+                <field id="enable_price" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Price</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -66,7 +85,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_review" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_review" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Review</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -74,7 +93,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtocart" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtocart" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Cart</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -82,7 +101,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtowishlist" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtowishlist" translate="label comment" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Wishlist</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -90,7 +109,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtocompare" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtocompare" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Compare</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -98,8 +117,8 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="item_limit" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Collection Size</label>
+                <field id="item_limit" translate="label comment" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Featured Collection Size</label>
                     <comment>Set Featured Product collection size. If size is blank or null then frontend set default collection size</comment>
                     <depends>
                         <field id="question_answer/general/active">1</field>
@@ -107,7 +126,7 @@
                     </depends>
                 </field>
 
-                <field id="slider_active" translate="label comment" type="select" sortOrder="8"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="slider_active" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Slider</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -115,7 +134,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="auto_slider" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="auto_slider" translate="label comment" type="select" sortOrder="11"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Auto Slide</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -124,7 +143,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="slider_speed" translate="label comment" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="slider_speed" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Auto Slide Speed</label>
                     <depends>
                         <field id="question_answer/general/active">1</field>
@@ -133,7 +152,7 @@
                         <field id="auto_slider">1</field>
                     </depends>
                 </field>                
-                <field id="default_items" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="default_items" translate="label comment" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Default slider items</label>
                     <comment>Slider active when your feature item is give slide items</comment>
                     <depends>
@@ -142,7 +161,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="next_prev" translate="label comment" type="select" sortOrder="13"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="next_prev" translate="label comment" type="select" sortOrder="14"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Next/Prev</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -151,7 +170,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="nav" translate="label comment" type="select" sortOrder="14"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="nav" translate="label comment" type="select" sortOrder="15"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Navigation</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -178,7 +197,26 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_price" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+				
+				<field id="sort_by" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Sort By</label>
+                    <source_model>RS\FeaturedProducts\Model\Config\Source\SortOption</source_model>
+                    <depends>
+                        <field id="question_answer/general/active">1</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+
+                <field id="sort_order" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Sort Order</label>
+                    <source_model>RS\FeaturedProducts\Model\Config\Source\SortOrderOption</source_model>
+                    <depends>
+                        <field id="question_answer/general/active">1</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+
+                <field id="enable_price" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Price</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -186,7 +224,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_review" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_review" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Review</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -194,7 +232,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtocart" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtocart" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Cart</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -202,7 +240,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtowishlist" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtowishlist" translate="label comment" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Wishlist</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -210,7 +248,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtocompare" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtocompare" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Compare</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -218,8 +256,8 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="item_limit" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Collection Size</label>
+                <field id="item_limit" translate="label comment" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Featured Collection Size</label>
                     <comment>Set Featured Product collection size. If size is blank or null then frontend set default collection size</comment>
                     <depends>
                         <field id="question_answer/general/active">1</field>
@@ -227,7 +265,7 @@
                     </depends>
                 </field>
 
-                <field id="slider_active" translate="label comment" type="select" sortOrder="8"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="slider_active" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Slider</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -235,7 +273,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="auto_slider" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="auto_slider" translate="label comment" type="select" sortOrder="11"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Auto Slide</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -244,7 +282,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="slider_speed" translate="label comment" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="slider_speed" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Auto Slide Speed</label>
                     <depends>
                         <field id="question_answer/general/active">1</field>
@@ -253,7 +291,7 @@
                         <field id="auto_slider">1</field>
                     </depends>
                 </field>                
-                <field id="default_items" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="default_items" translate="label comment" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Default slider items</label>
                     <comment>Slider active when your feature item is give slide items</comment>
                     <depends>
@@ -262,7 +300,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="next_prev" translate="label comment" type="select" sortOrder="13"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="next_prev" translate="label comment" type="select" sortOrder="14"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Next/Prev</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -271,7 +309,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="nav" translate="label comment" type="select" sortOrder="14"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="nav" translate="label comment" type="select" sortOrder="15"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Navigation</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -298,7 +336,26 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_price" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                
+                <field id="sort_by" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Sort By</label>
+                    <source_model>RS\FeaturedProducts\Model\Config\Source\SortOption</source_model>
+                    <depends>
+                        <field id="question_answer/general/active">1</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+
+                <field id="sort_order" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Sort Order</label>
+                    <source_model>RS\FeaturedProducts\Model\Config\Source\SortOrderOption</source_model>
+                    <depends>
+                        <field id="question_answer/general/active">1</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+
+                <field id="enable_price" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Price</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -306,7 +363,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_review" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_review" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Review</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -314,7 +371,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtocart" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtocart" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Cart</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -322,7 +379,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtowishlist" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtowishlist" translate="label comment" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Wishlist</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -330,7 +387,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtocompare" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtocompare" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Compare</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -338,8 +395,8 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="item_limit" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Collection Size</label>
+                <field id="item_limit" translate="label comment" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Featured Collection Size</label>
                     <comment>Set Featured Product collection size. If size is blank or null then frontend set default collection size</comment>
                     <depends>
                         <field id="question_answer/general/active">1</field>
@@ -347,7 +404,7 @@
                     </depends>
                 </field>
 
-                <field id="slider_active" translate="label comment" type="select" sortOrder="8"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="slider_active" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Slider</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -355,7 +412,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="auto_slider" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="auto_slider" translate="label comment" type="select" sortOrder="11"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Auto Slide</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -364,7 +421,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="slider_speed" translate="label comment" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="slider_speed" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Auto Slide Speed</label>
                     <depends>
                         <field id="question_answer/general/active">1</field>
@@ -373,7 +430,7 @@
                         <field id="auto_slider">1</field>
                     </depends>
                 </field>                
-                <field id="default_items" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="default_items" translate="label comment" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Default slider items</label>
                     <comment>Slider active when your feature item is give slide items</comment>
                     <depends>
@@ -382,7 +439,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="next_prev" translate="label comment" type="select" sortOrder="13"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="next_prev" translate="label comment" type="select" sortOrder="14"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Next/Prev</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -391,7 +448,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="nav" translate="label comment" type="select" sortOrder="14"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="nav" translate="label comment" type="select" sortOrder="15"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Navigation</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -420,7 +477,25 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_price" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <field id="sort_by" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Sort By</label>
+                    <source_model>RS\FeaturedProducts\Model\Config\Source\SortOption</source_model>
+                    <depends>
+                        <field id="question_answer/general/active">1</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+
+                <field id="sort_order" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Sort Order</label>
+                    <source_model>RS\FeaturedProducts\Model\Config\Source\SortOrderOption</source_model>
+                    <depends>
+                        <field id="question_answer/general/active">1</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                <field id="enable_price" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Price</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -428,7 +503,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_review" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_review" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Review</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -436,7 +511,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtocart" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtocart" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Cart</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -444,7 +519,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtowishlist" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtowishlist" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Wishlist</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -452,7 +527,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtocompare" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtocompare" translate="label comment" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Compare</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -460,8 +535,8 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="item_limit" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Collection Size</label>
+                <field id="item_limit" translate="label comment" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Featured Collection Size</label>
                     <comment>Set Featured Product collection size. If size is blank or null then frontend set default collection size</comment>
                     <depends>
                         <field id="question_answer/general/active">1</field>
@@ -487,7 +562,26 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_price" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                
+                <field id="sort_by" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Sort By</label>
+                    <source_model>RS\FeaturedProducts\Model\Config\Source\SortOption</source_model>
+                    <depends>
+                        <field id="question_answer/general/active">1</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+
+                <field id="sort_order" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Sort Order</label>
+                    <source_model>RS\FeaturedProducts\Model\Config\Source\SortOrderOption</source_model>
+                    <depends>
+                        <field id="question_answer/general/active">1</field>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+                
+                <field id="enable_price" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Price</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -495,7 +589,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_review" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_review" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Review</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -503,7 +597,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtocart" translate="label comment" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtocart" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Cart</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -511,7 +605,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtowishlist" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtowishlist" translate="label comment" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Wishlist</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -519,7 +613,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="enable_addtocompare" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_addtocompare" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Display Add To Compare</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -527,8 +621,8 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="item_limit" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Collection Size</label>
+                <field id="item_limit" translate="label comment" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Featured Collection Size</label>
                     <comment>Set Featured Product collection size. If size is blank or null then frontend set default collection size</comment>
                     <depends>
                         <field id="question_answer/general/active">1</field>
@@ -536,7 +630,7 @@
                     </depends>
                 </field>
 
-                <field id="slider_active" translate="label comment" type="select" sortOrder="8"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="slider_active" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Slider</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -544,7 +638,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="auto_slider" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="auto_slider" translate="label comment" type="select" sortOrder="11"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Auto Slide</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -553,7 +647,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="slider_speed" translate="label comment" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="slider_speed" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Auto Slide Speed</label>
                     <depends>
                         <field id="question_answer/general/active">1</field>
@@ -562,7 +656,7 @@
                         <field id="auto_slider">1</field>
                     </depends>
                 </field>                
-                <field id="default_items" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="default_items" translate="label comment" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Default slider items</label>
                     <comment>Slider active when your feature item is give slide items</comment>
                     <depends>
@@ -571,7 +665,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="next_prev" translate="label comment" type="select" sortOrder="13"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="next_prev" translate="label comment" type="select" sortOrder="14"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Next/Prev</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -580,7 +674,7 @@
                         <field id="slider_active">1</field>
                     </depends>
                 </field>
-                <field id="nav" translate="label comment" type="select" sortOrder="14"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="nav" translate="label comment" type="select" sortOrder="15"  showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Navigation</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>

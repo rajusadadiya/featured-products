@@ -17,6 +17,9 @@
     <body>      
         <referenceContainer name="page.bottom.container">
           	<block class="RS\FeaturedProducts\Block\FeaturedProduct" name="featured.product" as="featured_product" template="RS_FeaturedProducts::product/featured.phtml" ifconfig="featuredproduct/product_page/active">
+          		<block class="Magento\Framework\View\Element\RendererList" name="product.swatchrenderer" as="product.toprenderers">
+                    <block class="Magento\Framework\View\Element\Template" as="default"/>
+                </block>
           	</block>
         </referenceContainer>
     </body>

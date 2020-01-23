@@ -24,6 +24,8 @@
             <homepage>
                 <active>1</active>
                 <title>Featured Product</title>
+                <sort_by>name</sort_by>
+                <sort_order>DESC</sort_order>
                 <enable_price>1</enable_price>
                 <enable_review>1</enable_review>
                 <enable_addtocart>1</enable_addtocart>
@@ -40,6 +42,8 @@
             <category_page>
                 <active>1</active>
                 <title>Featured Product</title>
+                <sort_by>name</sort_by>
+                <sort_order>DESC</sort_order>
                 <enable_price>1</enable_price>
                 <enable_review>1</enable_review>
                 <enable_addtocart>1</enable_addtocart>
@@ -56,6 +60,8 @@
             <product_page>
                 <active>1</active>
                 <title>Featured Product</title>
+                <sort_by>name</sort_by>
+                <sort_order>DESC</sort_order>
                 <enable_price>1</enable_price>
                 <enable_review>1</enable_review>
                 <enable_addtocart>1</enable_addtocart>
@@ -72,6 +78,8 @@
             <sidebar>
                 <active>1</active>
                 <title>Featured Product</title>
+                <sort_by>name</sort_by>
+                <sort_order>DESC</sort_order>
                 <item_limit>4</item_limit>
                 <enable_price>1</enable_price>
                 <enable_review>1</enable_review>
@@ -82,6 +90,8 @@
             <block>
                 <active>1</active>
                 <title>Featured Product</title>
+                <sort_by>name</sort_by>
+                <sort_order>DESC</sort_order>
                 <enable_price>1</enable_price>
                 <enable_review>1</enable_review>
                 <enable_addtocart>1</enable_addtocart>

@@ -48,8 +48,10 @@ class AbstractFeaturedProduct extends \Magento\Catalog\Block\Product\AbstractPro
         $storeId  = $this->_storeManager->getStore()->getId();
         $collectionSize = $this->_fpHelper->getItemLimit($this->getPageName()) > 0 ? $this->_fpHelper->getItemLimit($this->getPageName()) : 10;
         $collection = $this->_productCollectionFactory->create()->setStoreId($storeId);
+
         $collection->addAttributeToSelect("*")
             ->addAttributeToFilter('rs_is_featured', 1)
+            ->addAttributeToSort($this->_fpHelper->getDefaultSort($this->getPageName()),$this->_fpHelper->getDefaultSortOrder($this->getPageName()))
             ->addMinimalPrice()
             ->addFinalPrice()
             ->addTaxPercents()
