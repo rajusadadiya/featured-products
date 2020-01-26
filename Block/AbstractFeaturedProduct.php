@@ -9,54 +9,114 @@
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
  *
- * @category    RS
- * @package     RS_FeaturedProducts
+ * @category RSExtensions
+ * @package  RS_FeaturedProducts
+ * @author   Raju Sadadiya <rsadadiya@gmail.com>
+ * @license  OSL 3.0
+ * @link     http://www.rajusadadiya.com
  */
+
 namespace RS\FeaturedProducts\Block;
 
-use \RS\FeaturedProducts\Helper\Data;
+use Magento\Catalog\Block\Product\AbstractProduct;
+use Magento\Catalog\Block\Product\Context;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
+use Magento\Catalog\Model\Product\Visibility;
+use Magento\Framework\Url\Helper\Data;
+use RS\FeaturedProducts\Helper\Data as FeaturedProductHelper;
 
-class AbstractFeaturedProduct extends \Magento\Catalog\Block\Product\AbstractProduct 
+/** 
+ * Class AbstractFeaturedProduct
+ * 
+ * @category RSExtensions
+ * @package  RS\FeaturedProducts\Block
+ * @author   Raju Sadadiya <rsadadiya@gmail.com>
+ * @license  OSL 3.0
+ * @link     http://www.rajusadadiya.com
+ */
+
+class AbstractFeaturedProduct extends AbstractProduct
 {
-    protected $_catalogProductVisibility;
+    /**
+     * Product visibility object
+     * 
+     * @var \Magento\Catalog\Model\Product\Visibility 
+     */
+    protected $catalogProductVisibility;
 
-    protected $_productCollectionFactory;
-
-    protected $_categoryFactory;
-
+    /**
+     * Product collection object
+     * 
+     * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
+     */
+    protected $productCollectionFactory;
+    
+    /**
+     * Url Helper object
+     * 
+     * @var \Magento\Framework\Url\Helper\Data
+     */
     protected $urlHelper;
 
-    protected $_fpHelper;
-
+    /**
+     * Featured products helper
+     * 
+     * @var \RS\FeaturedProducts\Helper\Data
+     */
+    protected $fpHelper;
+    
+    /**
+     * Default Constructor
+     * 
+     * @param Context               $context                  Context Object
+     * @param CollectionFactory     $productCollectionFactory Collection Object
+     * @param Visibility            $catalogProductVisibility Visibility object
+     * @param Data                  $urlHelper                Url helper object
+     * @param FeaturedProductHelper $fpHelper                 Featured Product helper
+     * @param array                 $data                     Arguments array
+     */
     public function __construct(
-        \Magento\Catalog\Block\Product\Context $context,
-        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
-        \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility,
-        \Magento\Framework\Url\Helper\Data $urlHelper,
-        \RS\FeaturedProducts\Helper\Data $fpHelper,
+        Context $context,
+        CollectionFactory $productCollectionFactory,
+        Visibility $catalogProductVisibility,
+        Data $urlHelper,
+        FeaturedProductHelper $fpHelper,
         array $data = []
     ) {
-        $this->_productCollectionFactory = $productCollectionFactory;
-        $this->_catalogProductVisibility = $catalogProductVisibility;
+        $this->productCollectionFactory = $productCollectionFactory;
+        $this->catalogProductVisibility = $catalogProductVisibility;
         $this->urlHelper = $urlHelper;
-        $this->_fpHelper = $fpHelper;
+        $this->fpHelper = $fpHelper;
         parent::__construct($context, $data);
     }
-
-    public function getProducts() {
-        
+    
+    /**
+     * Return product collection
+     * 
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    public function getProducts() 
+    {
         $storeId  = $this->_storeManager->getStore()->getId();
-        $collectionSize = $this->_fpHelper->getItemLimit($this->getPageName()) > 0 ? $this->_fpHelper->getItemLimit($this->getPageName()) : 10;
-        $collection = $this->_productCollectionFactory->create()->setStoreId($storeId);
+        $collectionSize = $this->fpHelper
+            ->getItemLimit($this->getPageName()) > 0 ? $this->fpHelper
+            ->getItemLimit($this->getPageName()) : 10;
+        $collection = $this->productCollectionFactory->create()
+            ->setStoreId($storeId);
 
         $collection->addAttributeToSelect("*")
             ->addAttributeToFilter('rs_is_featured', 1)
-            ->addAttributeToSort($this->_fpHelper->getDefaultSort($this->getPageName()),$this->_fpHelper->getDefaultSortOrder($this->getPageName()))
+            ->addAttributeToSort(
+                $this->fpHelper->getDefaultSort($this->getPageName()), 
+                $this->fpHelper->getDefaultSortOrder($this->getPageName())
+            )
             ->addMinimalPrice()
             ->addFinalPrice()
             ->addTaxPercents()
             ->addUrlRewrite()
-            ->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
+            ->setVisibility(
+                $this->catalogProductVisibility->getVisibleInCatalogIds()
+            );
         $collection->setPageSize($collectionSize)->setCurPage(1);
         $this->_eventManager->dispatch(
             'catalog_block_product_list_collection',
@@ -64,7 +124,14 @@ class AbstractFeaturedProduct extends \Magento\Catalog\Block\Product\AbstractPro
         );  
         return $collection;
     }
-
+    
+    /**
+     * Return add to cart form parameters
+     * 
+     * @param \Magento\Catalog\Model\Product $product product object
+     * 
+     * @return type
+     */
     public function getAddToCartPostParams(\Magento\Catalog\Model\Product $product)
     {
         $url = $this->getAddToCartUrl($product);
@@ -77,18 +144,36 @@ class AbstractFeaturedProduct extends \Magento\Catalog\Block\Product\AbstractPro
             ]
         ];
     }
-
-    public function getLoadedProductCollection() {
+    
+    /**
+     * Return Product collection
+     * 
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    public function getLoadedProductCollection() 
+    {
         return $this->getProducts();
     }
 
-    public function getProductCount() {
+    /**
+     * Return collection limit
+     * 
+     * @return int
+     */
+    public function getProductCount() 
+    {
         $limit = $this->getData("product_count");
-        if(!$limit)
+        if (!$limit) {
             $limit = 10;
+        }
         return $limit;
     }
 
+    /**
+     * Return Pagename
+     * 
+     * @return string
+     */
     public function getPageName()
     {
         $route = $this->getRequest()->getRouteName();
@@ -98,9 +183,14 @@ class AbstractFeaturedProduct extends \Magento\Catalog\Block\Product\AbstractPro
         unset($route);
         unset($controllerName);
         unset($action);
-        return $this->_fpHelper->getPageName($fullAction);
+        return $this->fpHelper->getPageName($fullAction);
     }
 
+    /**
+     * Return Image Dimensions
+     * 
+     * @return array
+     */
     public function getImageHightWidth()
     {
         $items = $this->getDefaultSliderItem();
@@ -111,73 +201,143 @@ class AbstractFeaturedProduct extends \Magento\Catalog\Block\Product\AbstractPro
         return $dimensions;
     }
     
+    /**
+     * Return module is enable or not
+     * 
+     * @return bool
+     */
     public function isEnable()
     {
-        return $this->_fpHelper->isEnable($this->getPageName());
+        return $this->fpHelper->isEnable($this->getPageName());
     }
 
+    /**
+     * Return Block Title
+     * 
+     * @return String
+     */
     public function getTitle()
     {
-        return $this->_fpHelper->getTitle($this->getPageName());
+        return $this->fpHelper->getTitle($this->getPageName());
     }
 
+    /**
+     * Return Collection Limits
+     * 
+     * @return int
+     */
     public function getItemLimit()
     {
-        return $this->_fpHelper->getItemLimit($this->getPageName());
+        return $this->fpHelper->getItemLimit($this->getPageName());
     }
-
+    
+    /**
+     * Return bool value for price display
+     * 
+     * @return bool
+     */
     public function isShowPrice()
     {
-        return $this->_fpHelper->isShowPrice($this->getPageName());
+        return $this->fpHelper->isShowPrice($this->getPageName());
     }
 
+    /**
+     * Return bool value for review display
+     * 
+     * @return bool
+     */
     public function isShowReview()
     {
-        return $this->_fpHelper->isShowReview($this->getPageName());
+        return $this->fpHelper->isShowReview($this->getPageName());
     }
-
+    
+    /**
+     * Return bool value for addtocart display
+     * 
+     * @return bool
+     */
     public function isShowAddToCart()
     {
-        return $this->_fpHelper->isShowAddToCart($this->getPageName());
+        return $this->fpHelper->isShowAddToCart($this->getPageName());
     }
 
+    /**
+     * Return bool value for addtowhishlist display
+     * 
+     * @return bool
+     */
     public function isShowAddToWishlist()
     {
-        return $this->_fpHelper->isShowAddToWishlist($this->getPageName());
+        return $this->fpHelper->isShowAddToWishlist($this->getPageName());
     }
 
+    /**
+     * Return bool value for compare button display
+     * 
+     * @return bool
+     */
     public function isShowAddToCompare()
     {
-        return $this->_fpHelper->isShowAddToCompare($this->getPageName());
+        return $this->fpHelper->isShowAddToCompare($this->getPageName());
     }
 
+    /**
+     * Return Image Dimensions
+     * 
+     * @return bool
+     */
     public function isSliderEnable()
     {
-        return $this->_fpHelper->isSliderEnable($this->getPageName());
+        return $this->fpHelper->isSliderEnable($this->getPageName());
     }
 
+    /**
+     * Return default slider items
+     * 
+     * @return bool
+     */
     public function getDefaultSliderItem()
     {
-        return $this->_fpHelper->getDefaultSliderItem($this->getPageName());
+        return $this->fpHelper->getDefaultSliderItem($this->getPageName());
     }
 
+    /**
+     * Return enable/disable slider
+     * 
+     * @return bool
+     */
     public function enableAutoSlide()
     {
-        return $this->_fpHelper->enableAutoSlide($this->getPageName());
+        return $this->fpHelper->enableAutoSlide($this->getPageName());
     }
 
+    /**
+     * Return enable/disable Next/Prev button
+     * 
+     * @return bool
+     */
     public function isShowNextPrev()
     {
-        return $this->_fpHelper->isShowNextPrev($this->getPageName());
+        return $this->fpHelper->isShowNextPrev($this->getPageName());
     }
 
+    /**
+     * Return enable/disable navigation dots
+     * 
+     * @return bool
+     */
     public function isShowNavigation()
     {
-        return $this->_fpHelper->isShowNavigation($this->getPageName());
+        return $this->fpHelper->isShowNavigation($this->getPageName());
     }
 
+    /**
+     * Return Image Dimensions
+     * 
+     * @return bool
+     */
     public function getSliderSpeed()
     {
-        return $this->_fpHelper->getSliderSpeed($this->getPageName());
+        return $this->fpHelper->getSliderSpeed($this->getPageName());
     }
 }

@@ -33,27 +33,6 @@ use Magento\Framework\App\Action\Action;
 					<div class='item product product-item'>
 						<div class="product-item-info">
 						<?php
-							$newFromDate = $_product->getNewsFromDate();
-							$newToDate = $_product->getNewsToDate();                 
-							$now = date("Y-m-d H:m(worry)");
-							// Get the Special Price
-							$specialprice = $_product->getSpecialPrice(); 
-							// Get the Special Price FROM date
-							$specialPriceFromDate = $_product->getSpecialFromDate();
-							// Get the Special Price TO date
-							$specialPriceToDate = $_product->getSpecialToDate();
-							// Get Current date
-							if ($specialprice && ($specialPriceFromDate <= $now && $specialPriceToDate >= $now))
-							{
-								echo "<span class='icon-sale icon-product'>Sale</span>";
-							}
-							else{
-								if($newFromDate <= $now && $newToDate >= $now) {
-									echo "<span class='icon-new icon-product'>Hot</span>";
-								}
-							}
-						?>
-						<?php
 							$productImage = $block->getImage($_product, $image);
 							if ($pos != null) {
 								$position = ' style="left:' . $productImage->getWidth() . 'px;'
@@ -146,33 +125,3 @@ use Magento\Framework\App\Action\Action;
 		<?php endif; ?>
 	</div>
 <?php endif; ?>
-
-<style type="text/css">
-	.rs-side-block .image-container{
-		display: inline-block;
-		width: 40%;
-	}
-	.rs-side-block .product-item-details{
-		display: inline-block;
-		width: 58%;
-		vertical-align: top;
-	}
-	.rs-side-block .product-item-actions .actions-primary{
-		display: initial;
-	}
-	.rs-side-block .product-item-actions .actions-primary + .actions-secondary{
-		display: initial;
-		text-align: center;
-		width: 100%;
-	}
-	.rs-side-block .product-item-actions .actions-primary + .actions-secondary > .action{
-		margin: 4px 10px;
-	}
-	.rs-side-block .product-items .product-item-info .product-item-photo
-	{
-		position: relative;
-	}
-	.rs-side-block .product-items .product-item-details{
-		margin: 0px;
-	}
-</style>

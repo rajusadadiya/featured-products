@@ -9,13 +9,34 @@
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
  *
- * @category    RS
- * @package     RS_FeaturedProducts
+ * @category RSExtensions
+ * @package  RS_FeaturedProducts
+ * @author   Raju Sadadiya <rsadadiya@gmail.com>
+ * @license  OSL 3.0
+ * @link     http://www.rajusadadiya.com
  */
+
 namespace RS\FeaturedProducts\Block;
 
-class SidebarFeaturedProduct extends \RS\FeaturedProducts\Block\AbstractFeaturedProduct
+use RS\FeaturedProducts\Block\AbstractFeaturedProduct;
+
+/** 
+ * Class SidebarFeaturedProduct
+ * 
+ * @category RSExtensions
+ * @package  RS\FeaturedProducts\Block
+ * @author   Raju Sadadiya <rsadadiya@gmail.com>
+ * @license  OSL 3.0
+ * @link     http://www.rajusadadiya.com
+ */
+
+class SidebarFeaturedProduct extends AbstractFeaturedProduct
 {
+    /**
+     * Return Page name
+     * 
+     * @return string
+     */
     public function getPageName()
     {
         return "sidebar";

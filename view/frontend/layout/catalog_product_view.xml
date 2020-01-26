@@ -15,9 +15,12 @@
 -->
 <page  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>      
+    	<referenceBlock name="product.view.swatchrenderer">
+            <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml" />
+        </referenceBlock>
         <referenceContainer name="page.bottom.container">
           	<block class="RS\FeaturedProducts\Block\FeaturedProduct" name="featured.product" as="featured_product" template="RS_FeaturedProducts::product/featured.phtml" ifconfig="featuredproduct/product_page/active">
-          		<block class="Magento\Framework\View\Element\RendererList" name="product.swatchrenderer" as="product.toprenderers">
+          		<block class="Magento\Framework\View\Element\RendererList" name="product.view.swatchrenderer" as="product.view.toprenderers">
                     <block class="Magento\Framework\View\Element\Template" as="default"/>
                 </block>
           	</block>

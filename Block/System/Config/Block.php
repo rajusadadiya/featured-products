@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Raju Sadadiya
  *
@@ -9,26 +10,43 @@
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
  *
- * @category    RS
- * @package     RS_FeaturedProducts
+ * @category RSExtensions
+ * @package  RS_FeaturedProducts
+ * @author   Raju Sadadiya <rsadadiya@gmail.com>
+ * @license  OSL 3.0
+ * @link     http://www.rajusadadiya.com
  */
+
 namespace RS\FeaturedProducts\Block\System\Config;
 
 use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 
+/** 
+ * Class Block
+ * 
+ * @category RSExtensions
+ * @package  RS\FeaturedProducts\Block
+ * @author   Raju Sadadiya <rsadadiya@gmail.com>
+ * @license  OSL 3.0
+ * @link     http://www.rajusadadiya.com
+ */
 class Block extends Field
 {
     /**
+     * Set default template
+     * 
      * @var string
      */
     protected $_template = 'RS_FeaturedProducts::system/config/block.phtml';
 
      /**
-     * @param Context $context
-     * @param array $data
-     */
+      * Default Constructor
+      *  
+      * @param Context $context context object
+      * @param array   $data    arguments array
+      */
     public function __construct(
         Context $context,
         array $data = []
@@ -39,7 +57,8 @@ class Block extends Field
     /**
      * Remove scope label
      *
-     * @param  AbstractElement $element
+     * @param AbstractElement $element Abstract block obbject
+     * 
      * @return string
      */
     public function render(AbstractElement $element)
@@ -51,7 +70,8 @@ class Block extends Field
     /**
      * Return element html
      *
-     * @param  AbstractElement $element
+     * @param AbstractElement $element Abstract block obbject
+     * 
      * @return string
      */
     protected function _getElementHtml(AbstractElement $element)
@@ -59,4 +79,3 @@ class Block extends Field
         return $this->_toHtml();
     }
 }
-?>
