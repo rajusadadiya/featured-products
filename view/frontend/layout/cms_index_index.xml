@@ -19,16 +19,27 @@
     </head>
     <body>      
     	<referenceBlock name="cms.index.swatchrenderer">
-            <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml" />
+            <!-- <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml" /> -->
+
+            <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable"
+                   name="category.product.type.details.renderers.configurable" as="configurable"
+                   template="Magento_Swatches::product/listing/renderer.phtml"
+                   ifconfig="catalog/frontend/show_swatches_in_product_list">
+                <arguments>
+                    <argument name="configurable_view_model"
+                              xsi:type="object">Magento\Swatches\ViewModel\Product\Renderer\Configurable</argument>
+                </arguments>
+            </block>
         </referenceBlock> 
         <referenceContainer name="content">
           	<block class="RS\FeaturedProducts\Block\FeaturedProduct" name="featured.home" as="featured_home" template="RS_FeaturedProducts::product/featured.phtml" ifconfig="featuredproduct/homepage/active" after="-">
                 <block class="Magento\Framework\View\Element\RendererList" name="cms.index.swatchrenderer" as="cms.index.toprenderers">
                     <block class="Magento\Framework\View\Element\Template" as="default"/>
                 </block>
+                <block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
+                        <block class="Magento\Framework\View\Element\Template" name="category.product.type.details.renderers.default" as="default"/>
+                    </block>
           	</block>
-          	<!-- <block class="Test\Homeslider\Block\Productslist" name="productlist" template="Test_Homeslider::products.phtml">
-            </block> -->
         </referenceContainer>
     </body>
 </page>

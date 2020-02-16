@@ -9,9 +9,10 @@
  *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
+ * php version 7.0
  *
  * @category RSExtensions
- * @package  RS_FeaturedProducts
+ * @package  RS FeaturedProducts
  * @author   Raju Sadadiya <rsadadiya@gmail.com>
  * @license  OSL 3.0
  * @link     http://www.rajusadadiya.com
@@ -21,9 +22,9 @@ namespace RS\FeaturedProducts\Block;
 
 use \RS\FeaturedProducts\Helper\Data;
 
-/** 
+/**
  * Class FeaturedProduct
- * 
+ *
  * @category RSExtensions
  * @package  RS\FeaturedProducts\Block
  * @author   Raju Sadadiya <rsadadiya@gmail.com>
@@ -50,7 +51,7 @@ class FeaturedProduct extends \RS\FeaturedProducts\Block\AbstractFeaturedProduct
 
     /**
      * Return Page name
-     * 
+     *
      * @return string
      */
     public function getPageName()
@@ -62,14 +63,14 @@ class FeaturedProduct extends \RS\FeaturedProducts\Block\AbstractFeaturedProduct
         unset($route);
         unset($controllerName);
         unset($action);
-        return $this->_fpHelper->getPageName($fullAction);
-    } 
+        return $this->fpHelper->getPageName($fullAction);
+    }
     
     /**
      * Return configurable product swatch
-     * 
-     * @param \Magento\Catalog\Model\Product $product 
-     * 
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     *
      * @return string
      */
     public function getProductDetailsHtml(\Magento\Catalog\Model\Product $product)
@@ -80,13 +81,13 @@ class FeaturedProduct extends \RS\FeaturedProducts\Block\AbstractFeaturedProduct
             return $renderer->toHtml();
         }
         return '';
-    }   
+    }
 
     /**
      * Return product type block
-     * 
+     *
      * @param string|null $type product type
-     * 
+     *
      * @return bool|\Magento\Framework\View\Element\AbstractBlock
      */
     public function getDetailsRenderer($type = null)
@@ -103,7 +104,7 @@ class FeaturedProduct extends \RS\FeaturedProducts\Block\AbstractFeaturedProduct
     
     /**
      * Return RednererList of blocks
-     * 
+     *
      * @return \Magento\Framework\View\Element\RendererList
      */
     protected function getDetailsRendererList()

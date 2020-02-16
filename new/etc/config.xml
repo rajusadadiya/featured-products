@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!--/**
+ * Raju Sadadiya
+ *
+ * NOTICE OF LICENSE
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    RS
+ * @package     RS_FeaturedProducts
+ */ 
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <featuredproduct>
+            <general>
+                <active>1</active>
+                <title>Featured Product</title>
+                <item_limit>10</item_limit>
+            </general>
+            <homepage>
+                <active>1</active>
+                <title>Featured Product</title>
+                <sort_by>name</sort_by>
+                <sort_order>DESC</sort_order>
+                <enable_price>1</enable_price>
+                <enable_review>1</enable_review>
+                <enable_addtocart>1</enable_addtocart>
+                <enable_addtowishlist>1</enable_addtowishlist>
+                <enable_addtocompare>1</enable_addtocompare>
+                <item_limit>10</item_limit>
+                <slider_active>1</slider_active>
+                <auto_slider>1</auto_slider>
+                <slider_speed>3000</slider_speed>
+                <default_items>5</default_items>
+                <next_prev>1</next_prev>
+                <nav>1</nav>
+            </homepage>
+            <category_page>
+                <active>1</active>
+                <title>Featured Product</title>
+                <sort_by>name</sort_by>
+                <sort_order>DESC</sort_order>
+                <enable_price>1</enable_price>
+                <enable_review>1</enable_review>
+                <enable_addtocart>1</enable_addtocart>
+                <enable_addtowishlist>1</enable_addtowishlist>
+                <enable_addtocompare>1</enable_addtocompare>
+                <item_limit>10</item_limit>
+                <slider_active>1</slider_active>
+                <auto_slider>1</auto_slider>
+                <slider_speed>3000</slider_speed>
+                <default_items>5</default_items>
+                <next_prev>1</next_prev>
+                <nav>1</nav>
+            </category_page>
+            <product_page>
+                <active>1</active>
+                <title>Featured Product</title>
+                <sort_by>name</sort_by>
+                <sort_order>DESC</sort_order>
+                <enable_price>1</enable_price>
+                <enable_review>1</enable_review>
+                <enable_addtocart>1</enable_addtocart>
+                <enable_addtowishlist>1</enable_addtowishlist>
+                <enable_addtocompare>1</enable_addtocompare>
+                <item_limit>10</item_limit>
+                <slider_active>1</slider_active>
+                <auto_slider>1</auto_slider>
+                <slider_speed>3000</slider_speed>
+                <default_items>5</default_items>
+                <next_prev>1</next_prev>
+                <nav>1</nav>
+            </product_page>
+            <sidebar>
+                <active>1</active>
+                <title>Featured Product</title>
+                <sort_by>name</sort_by>
+                <sort_order>DESC</sort_order>
+                <item_limit>4</item_limit>
+                <enable_price>1</enable_price>
+                <enable_review>1</enable_review>
+                <enable_addtocart>1</enable_addtocart>
+                <enable_addtowishlist>1</enable_addtowishlist>
+                <enable_addtocompare>1</enable_addtocompare>
+            </sidebar>
+            <block>
+                <active>1</active>
+                <title>Featured Product</title>
+                <sort_by>name</sort_by>
+                <sort_order>DESC</sort_order>
+                <enable_price>1</enable_price>
+                <enable_review>1</enable_review>
+                <enable_addtocart>1</enable_addtocart>
+                <enable_addtowishlist>1</enable_addtowishlist>
+                <enable_addtocompare>1</enable_addtocompare>
+                <item_limit>10</item_limit>
+                <slider_active>1</slider_active>
+                <auto_slider>1</auto_slider>
+                <slider_speed>3000</slider_speed>
+                <default_items>5</default_items>
+                <next_prev>1</next_prev>
+                <nav>1</nav>
+            </block>
+        </featuredproduct>
+    </default>
+</config>

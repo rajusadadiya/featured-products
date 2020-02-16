@@ -9,6 +9,7 @@
  *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
+ * php version 7.0
  *
  * @category RSExtensions
  * @package  RS_FeaturedProducts

@@ -138,8 +138,34 @@ use Magento\Framework\App\Action\Action;
 		<?php endif; ?>
 			<script type="text/javascript">
 			<?php if($this->isSliderEnable() && $_productCollection->count() > $this->getDefaultSliderItem()): ?>
-				
+				require([
+					'jquery',
+					'mage/mage',
+					'rsowl'
+				], function ($) {
+					'use strict';
+					jQuery(".owl-carousel").owlCarousel({
+						autoplay : <?php echo $this->enableAutoSlide() ; ?>,
+						items : <?php echo $this->getDefaultSliderItem(); ?>,
+						autoplayTimeout : <?php echo $this->getSliderSpeed(); ?>,
+						nav : <?php echo $this->isShowNextPrev(); ?>,
+						dots : <?php echo $this->isShowNavigation(); ?>,
+						loop:true,
+						autoplayHoverPause:true,
+					});
+				});
 			<?php endif;?>
 			</script>
 	</div>
 <?php endif; ?>
+<style type="text/css">
+	.catalog-category-view .page-bottom, .catalog-product-view .page-bottom{
+		width: 100%;
+	}
+	@media only screen and (max-width: 767px)
+	{
+		.catalog-category-view .page-bottom, .catalog-product-view .page-bottom{
+			width: 90%;
+		}
+	}
+</style>
