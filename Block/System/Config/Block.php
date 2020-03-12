@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Raju Sadadiya
  *
@@ -11,11 +10,9 @@
  * version in the future.
  * php version 7.0
  *
- * @category RSExtensions
- * @package  RS_FeaturedProducts
- * @author   Raju Sadadiya <rsadadiya@gmail.com>
- * @license  OSL 3.0
- * @link     http://www.rajusadadiya.com
+ * @author  Raju Sadadiya <rsadadiya@gmail.com>
+ * @license OSL 3.0
+ * @link    http://www.rajusadadiya.com
  */
 
 namespace RS\FeaturedProducts\Block\System\Config;
@@ -27,11 +24,11 @@ use Magento\Framework\Data\Form\Element\AbstractElement;
 /**
  * Class Block
  *
- * @category RSExtensions
- * @package  RS\FeaturedProducts\Block
- * @author   Raju Sadadiya <rsadadiya@gmail.com>
- * @license  OSL 3.0
- * @link     http://www.rajusadadiya.com
+ * This block is use for admin system config
+ *
+ * @author  Raju Sadadiya <rsadadiya@gmail.com>
+ * @license OSL 3.0
+ * @link    http://www.rajusadadiya.com
  */
 class Block extends Field
 {

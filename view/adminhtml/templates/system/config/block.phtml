@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 /**
  * Raju Sadadiya
  *
@@ -10,26 +9,24 @@
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
  *
- * @category RSExtensions
- * @package  RS_FeaturedProducts
- * @author   Raju Sadadiya <rsadadiya@gmail.com>
- * @license  OSL 3.0
- * @link     http://www.rajusadadiya.com
+ * @author  Raju Sadadiya <rsadadiya@gmail.com>
+ * @license OSL 3.0
+ * @link    http://www.rajusadadiya.com
  */
 ?>
 <label>
-	<strong><?php echo __("For static block & page");?></strong>
+    <strong><?= $block->escapeHtml(__("For static block & page")) ?></strong>
 </label>
 <br>
 <code>
-	{{block class="RS\FeaturedProducts\Block\FeaturedBlock" template="RS_FeaturedProducts::product/featured.phtml"}}
+    {{block class="RS\FeaturedProducts\Block\FeaturedBlock" template="RS_FeaturedProducts::product/featured.phtml"}}
 </code>
 <br>
 <br>
 <label>
-	<strong><?php echo __("For xml layout");?></strong>
+    <strong><?= $block->escapeHtml(__("For xml layout")) ?></strong>
 </label>
 <br>
 <code>
-	<?php echo "&lt;block class=\"RS\\FeaturedProducts\\Block\\FeaturedBlock\" name=\"featured.block\" as=\"featured_block\" template=\"RS_FeaturedProducts::product/featured.phtml\" ifconfig=\"featuredproduct/block/active\" /&gt;"; ?>
+    <?= $block->escapeHtml("&lt;block class=\"RS\\FeaturedProducts\\Block\\FeaturedBlock\" name=\"featured.block\" as=\"featured_block\" template=\"RS_FeaturedProducts::product/featured.phtml\" ifconfig=\"featuredproduct/block/active\" /&gt;") ?>
 </code>

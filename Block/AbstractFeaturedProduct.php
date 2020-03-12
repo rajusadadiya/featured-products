@@ -10,11 +10,9 @@
  * version in the future.
  * php version 7.0
  *
- * @category RSExtensions
- * @package  RS_FeaturedProducts
- * @author   Raju Sadadiya <rsadadiya@gmail.com>
- * @license  OSL 3.0
- * @link     http://www.rajusadadiya.com
+ * @author  Raju Sadadiya <rsadadiya@gmail.com>
+ * @license OSL 3.0
+ * @link    http://www.rajusadadiya.com
  */
 
 namespace RS\FeaturedProducts\Block;
@@ -26,49 +24,49 @@ use Magento\Catalog\Model\Product\Visibility;
 use Magento\Framework\Url\Helper\Data;
 use RS\FeaturedProducts\Helper\Data as FeaturedProductHelper;
 
-/** 
+/**
  * Class AbstractFeaturedProduct
- * 
- * @category RSExtensions
- * @package  RS\FeaturedProducts\Block
- * @author   Raju Sadadiya <rsadadiya@gmail.com>
- * @license  OSL 3.0
- * @link     http://www.rajusadadiya.com
+ *
+ * This is perant class of all featured product blocks
+ *
+ * @author  Raju Sadadiya <rsadadiya@gmail.com>
+ * @license OSL 3.0
+ * @link    http://www.rajusadadiya.com
  */
 
 class AbstractFeaturedProduct extends AbstractProduct
 {
     /**
      * Product visibility object
-     * 
-     * @var \Magento\Catalog\Model\Product\Visibility 
+     *
+     * @var \Magento\Catalog\Model\Product\Visibility
      */
     protected $catalogProductVisibility;
 
     /**
      * Product collection object
-     * 
+     *
      * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
      */
     protected $productCollectionFactory;
     
     /**
      * Url Helper object
-     * 
+     *
      * @var \Magento\Framework\Url\Helper\Data
      */
     protected $urlHelper;
 
     /**
      * Featured products helper
-     * 
+     *
      * @var \RS\FeaturedProducts\Helper\Data
      */
     protected $fpHelper;
     
     /**
      * Default Constructor
-     * 
+     *
      * @param Context               $context                  Context Object
      * @param CollectionFactory     $productCollectionFactory Collection Object
      * @param Visibility            $catalogProductVisibility Visibility object
@@ -93,10 +91,10 @@ class AbstractFeaturedProduct extends AbstractProduct
     
     /**
      * Return product collection
-     * 
+     *
      * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
      */
-    public function getProducts() 
+    public function getProducts()
     {
         $storeId  = $this->_storeManager->getStore()->getId();
         $collectionSize = $this->fpHelper
@@ -108,7 +106,7 @@ class AbstractFeaturedProduct extends AbstractProduct
         $collection->addAttributeToSelect("*")
             ->addAttributeToFilter('rs_is_featured', 1)
             ->addAttributeToSort(
-                $this->fpHelper->getDefaultSort($this->getPageName()), 
+                $this->fpHelper->getDefaultSort($this->getPageName()),
                 $this->fpHelper->getDefaultSortOrder($this->getPageName())
             )
             ->addMinimalPrice()
@@ -122,15 +120,15 @@ class AbstractFeaturedProduct extends AbstractProduct
         $this->_eventManager->dispatch(
             'catalog_block_product_list_collection',
             ['collection' => $collection]
-        );  
+        );
         return $collection;
     }
     
     /**
      * Return add to cart form parameters
-     * 
+     *
      * @param \Magento\Catalog\Model\Product $product product object
-     * 
+     *
      * @return type
      */
     public function getAddToCartPostParams(\Magento\Catalog\Model\Product $product)
@@ -148,20 +146,20 @@ class AbstractFeaturedProduct extends AbstractProduct
     
     /**
      * Return Product collection
-     * 
+     *
      * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
      */
-    public function getLoadedProductCollection() 
+    public function getLoadedProductCollection()
     {
         return $this->getProducts();
     }
 
     /**
      * Return collection limit
-     * 
+     *
      * @return int
      */
-    public function getProductCount() 
+    public function getProductCount()
     {
         $limit = $this->getData("product_count");
         if (!$limit) {
@@ -172,7 +170,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return Pagename
-     * 
+     *
      * @return string
      */
     public function getPageName()
@@ -189,7 +187,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return Image Dimensions
-     * 
+     *
      * @return array
      */
     public function getImageHightWidth()
@@ -204,7 +202,7 @@ class AbstractFeaturedProduct extends AbstractProduct
     
     /**
      * Return module is enable or not
-     * 
+     *
      * @return bool
      */
     public function isEnable()
@@ -214,7 +212,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return Block Title
-     * 
+     *
      * @return String
      */
     public function getTitle()
@@ -224,7 +222,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return Collection Limits
-     * 
+     *
      * @return int
      */
     public function getItemLimit()
@@ -234,7 +232,7 @@ class AbstractFeaturedProduct extends AbstractProduct
     
     /**
      * Return bool value for price display
-     * 
+     *
      * @return bool
      */
     public function isShowPrice()
@@ -244,7 +242,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return bool value for review display
-     * 
+     *
      * @return bool
      */
     public function isShowReview()
@@ -254,7 +252,7 @@ class AbstractFeaturedProduct extends AbstractProduct
     
     /**
      * Return bool value for addtocart display
-     * 
+     *
      * @return bool
      */
     public function isShowAddToCart()
@@ -264,7 +262,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return bool value for addtowhishlist display
-     * 
+     *
      * @return bool
      */
     public function isShowAddToWishlist()
@@ -274,7 +272,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return bool value for compare button display
-     * 
+     *
      * @return bool
      */
     public function isShowAddToCompare()
@@ -284,7 +282,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return Image Dimensions
-     * 
+     *
      * @return bool
      */
     public function isSliderEnable()
@@ -294,7 +292,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return default slider items
-     * 
+     *
      * @return bool
      */
     public function getDefaultSliderItem()
@@ -304,7 +302,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return enable/disable slider
-     * 
+     *
      * @return bool
      */
     public function enableAutoSlide()
@@ -314,7 +312,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return enable/disable Next/Prev button
-     * 
+     *
      * @return bool
      */
     public function isShowNextPrev()
@@ -324,7 +322,7 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return enable/disable navigation dots
-     * 
+     *
      * @return bool
      */
     public function isShowNavigation()
@@ -334,11 +332,21 @@ class AbstractFeaturedProduct extends AbstractProduct
 
     /**
      * Return Image Dimensions
-     * 
+     *
      * @return bool
      */
     public function getSliderSpeed()
     {
         return $this->fpHelper->getSliderSpeed($this->getPageName());
+    }
+
+    /**
+     * Return Magento version information
+     *
+     * @return string
+     */
+    public function getMagentoVersion()
+    {
+        return $this->fpHelper->getMagentoVersion();
     }
 }

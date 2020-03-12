@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Raju Sadadiya
  *
@@ -11,25 +10,25 @@
  * version in the future.
  * php version 7.0
  *
- * @category RSExtensions
- * @package  RS FeaturedProducts
- * @author   Raju Sadadiya <rsadadiya@gmail.com>
- * @license  OSL 3.0
- * @link     http://www.rajusadadiya.com
+ * @author  Raju Sadadiya <rsadadiya@gmail.com>
+ * @license OSL 3.0
+ * @link    http://www.rajusadadiya.com
  */
 
 namespace RS\FeaturedProducts\Block;
 
-use \RS\FeaturedProducts\Helper\Data;
+use RS\FeaturedProducts\Helper\Data;
+use Magento\Swatches\Block\Product\Renderer\Listing\Configurable;
 
 /**
  * Class FeaturedProduct
  *
- * @category RSExtensions
- * @package  RS\FeaturedProducts\Block
- * @author   Raju Sadadiya <rsadadiya@gmail.com>
- * @license  OSL 3.0
- * @link     http://www.rajusadadiya.com
+ * This block is use for call featured product to homepage, product list page,
+ * and product view page
+ *
+ * @author  Raju Sadadiya <rsadadiya@gmail.com>
+ * @license OSL 3.0
+ * @link    http://www.rajusadadiya.com
  */
 
 class FeaturedProduct extends \RS\FeaturedProducts\Block\AbstractFeaturedProduct
@@ -76,6 +75,15 @@ class FeaturedProduct extends \RS\FeaturedProducts\Block\AbstractFeaturedProduct
     public function getProductDetailsHtml(\Magento\Catalog\Model\Product $product)
     {
         $renderer = $this->getDetailsRenderer($product->getTypeId());
+        $versionPart = explode(".", $this->getMagentoVersion());
+        if ($renderer instanceof Configurable
+            && $versionPart[1] == 3 && $versionPart[2] > 2
+        ) {
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $configurableViewModelObj = $objectManager
+                ->create(\Magento\Swatches\ViewModel\Product\Renderer\Configurable::class);
+            $renderer->setConfigurableViewModel($configurableViewModelObj);
+        }
         if ($renderer) {
             $renderer->setProduct($product);
             return $renderer->toHtml();

@@ -10,23 +10,21 @@
  * version in the future.
  * php version 7.0
  *
- * @category RSExtensions
- * @package  RS_FeaturedProducts
- * @author   Raju Sadadiya <rsadadiya@gmail.com>
- * @license  OSL 3.0
- * @link     http://www.rajusadadiya.com
+ * @author  Raju Sadadiya <rsadadiya@gmail.com>
+ * @license OSL 3.0
+ * @link    http://www.rajusadadiya.com
  */
 
 namespace RS\FeaturedProducts\Helper;
 
-/** 
+/**
  * Class Data
- * 
- * @category RSExtensions
- * @package  RS\FeaturedProducts\Helper
- * @author   Raju Sadadiya <rsadadiya@gmail.com>
- * @license  OSL 3.0
- * @link     http://www.rajusadadiya.com
+ *
+ * Helper class for featured product module
+ *
+ * @author  Raju Sadadiya <rsadadiya@gmail.com>
+ * @license OSL 3.0
+ * @link    http://www.rajusadadiya.com
  */
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
@@ -46,18 +44,22 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     const PRODUCT_PAGE = "catalog/product/view";
 
+    const PRODUCT_PAGE_WISHLIST = "wishlist/index/configure";
+
+    const PRODUCT_PAGE_CART = "checkout/cart/configure";
+
     /**
-     * Homepage code
+     * CMS Homepage code
      */
     const HOMEPAGE_CODE = "homepage";
     
     /**
-     * Category page code
+     * Product list page code
      */
     const CATEGORY_PAGE_CODE = "category_page";
     
     /**
-     * Product page code
+     * Product view page code
      */
     const PRODUCT_PAGE_CODE = "product_page";
 
@@ -150,22 +152,33 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * Active navigation dots Field
      */
     const NAV = "nav";
-    
+
+    /**
+     * MagentoMetaData object
+     *
+     * @var \Magento\Framework\App\ProductMetadataInterface
+     */
+    public $productMetadata;
+
     /**
      * Default Constructor
-     * 
-     * @param \Magento\Framework\App\Helper\Context $context Context object
+     *
+     * @param \Magento\Framework\App\Helper\Context           $context
+     * @param \Magento\Framework\App\ProductMetadataInterface $productMetadata
      */
-    public function __construct(\Magento\Framework\App\Helper\Context $context)
-    {
+    public function __construct(
+        \Magento\Framework\App\Helper\Context $context,
+        \Magento\Framework\App\ProductMetadataInterface $productMetadata
+    ) {
         parent::__construct($context);
+        $this->productMetadata = $productMetadata;
     }
 
     /**
      * Return config value
-     * 
+     *
      * @param string $path config path
-     * 
+     *
      * @return mixed
      */
     public function getConfig($path)
@@ -176,9 +189,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     
     /**
      * Return config path
-     * 
+     *
      * @param string $path config path
-     * 
+     *
      * @return string
      */
     public function getConfigPath($path)
@@ -188,9 +201,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return IsEnable specific featured product block
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return boolean
      */
     public function isEnable($page)
@@ -204,9 +217,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     
     /**
      * Return Title featured product block
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return string
      */
     public function getTitle($page)
@@ -220,9 +233,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     
     /**
      * Return Collection  limits
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return int
      */
     public function getItemLimit($page)
@@ -236,9 +249,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return Default sort options
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return string
      */
     public function getDefaultSort($page)
@@ -248,9 +261,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return Default sort order options
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return string
      */
     public function getDefaultSortOrder($page)
@@ -261,9 +274,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return price enable/disable
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return bool
      */
     public function isShowPrice($page)
@@ -273,9 +286,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return review enable/disable
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return bool
      */
     public function isShowReview($page)
@@ -285,9 +298,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     
     /**
      * Return Addtocart button enable/disable
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return bool
      */
     public function isShowAddToCart($page)
@@ -297,9 +310,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     
     /**
      * Return Addtowishlist button enable/disable
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return bool
      */
     public function isShowAddToWishlist($page)
@@ -309,9 +322,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return AddtoCompare button enable/disable
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return bool
      */
     public function isShowAddToCompare($page)
@@ -321,9 +334,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return slider enable/disable
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return bool
      */
     public function isSliderEnable($page)
@@ -333,9 +346,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return Autoslider enable/disable
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return bool
      */
     public function enableAutoSlide($page)
@@ -345,9 +358,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return next/prev button enable/disable
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return bool
      */
     public function isShowNextPrev($page)
@@ -357,9 +370,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return Navigation dots button enable/disable
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return bool
      */
     public function isShowNavigation($page)
@@ -369,9 +382,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return slider speed
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return int
      */
     public function getSliderSpeed($page)
@@ -381,9 +394,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     
     /**
      * Return slider item
-     * 
+     *
      * @param string $page Pagename
-     * 
+     *
      * @return int
      */
     public function getDefaultSliderItem($page)
@@ -393,20 +406,33 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Return Pagename
-     * 
+     *
      * @param string $action Pageaction
-     * 
+     *
      * @return string
      */
     public function getPageName($action)
     {
         if ($action == self::HOMEPAGE) {
             return self::HOMEPAGE_CODE;
-        } else if ($action == self::CATEGORY_PAGE) {
+        } elseif ($action == self::CATEGORY_PAGE) {
             return self::CATEGORY_PAGE_CODE;
-        } else if ($action == self::PRODUCT_PAGE) {
+        } elseif ($action == self::PRODUCT_PAGE 
+            || $action == self::PRODUCT_PAGE_CART 
+            || $action == self::PRODUCT_PAGE_WISHLIST
+        ) {
             return self::PRODUCT_PAGE_CODE;
         }
         return false;
+    }
+
+    /**
+     * Return Magento version
+     *
+     * @return string
+     */
+    public function getMagentoVersion()
+    {
+        return $this->productMetadata->getVersion();
     }
 }
